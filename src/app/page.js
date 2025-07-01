@@ -2,6 +2,7 @@ import Hero from "@/components/hero";
 
 import NavBar from "@/components/navbar";
 import HairType from "@/components/hairType";
+import Products from "@/components/products";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <NavBar />
       <Hero/>
       <HairType />
+      <Products />
     </main>
   );
 }
