@@ -11,6 +11,9 @@
   --color-blue-100: #2C2E55;
 }
 
+body{
+  overflow-x: hidden;
+}
 /* NavBar */
 .nav-hover-btn {
   @apply relative ms-10 text-xs uppercase

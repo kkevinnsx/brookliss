@@ -58,10 +58,10 @@ export default function HairType() {
   return (
     <div className="flex flex-col items-center justify-center bg-white p-8 w-full min-h-screen">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-black mb-2 text-blue-100">
+        <h1 className="text-3xl font-bold text-black mb-2">
           <b>PARA TODOS OS TIPOS DE CABELO!</b>
         </h1>
-        <h2 className="text-4xl text-gray-600 text-blue-100">
+        <h2 className="text-4xl dark:text-gray-600 text-blue-100">
           Porque você merece se cuidar com consciência.
         </h2>
       </div>

@@ -6,7 +6,7 @@ import Products from "@/components/products";
 
 export default function Home() {
   return (
-    <main className="relative bg-white min-h-screen font-[Lora] w-screen overflow-x-hidden">
+    <main style={{ fontFamily: 'Lora, serif' }} className="relative bg-white min-h-screen w-screen overflow-x-hidden">
       <NavBar />
       <Hero/>
       <HairType />
