@@ -28,27 +28,25 @@ const TiltCard = ({ src, alt, name }) => {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <div 
-        ref={itemRef}
-        className="w-74 h-120 relative rounded-2xl overflow-hidden transition-transform duration-300 ease-out group"
-        style={{ transform: transformStyle }}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-      >
-        <Image 
-          src={src} 
-          alt={alt}
-          fill
-          className="object-cover"
-        />
-        
-        <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4
-          transition-all duration-500 ${isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-          <span className="text-white font-medium text-xl block text-center">
-            {name}
-          </span>
-        </div>
+    <div 
+      ref={itemRef}
+      className="w-74 h-120 relative rounded-2xl overflow-hidden transition-transform duration-300 ease-out group"
+      style={{ transform: transformStyle }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      <Image 
+        src={src} 
+        alt={alt}
+        fill
+        className="object-cover"
+      />
+
+      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4
+        opacity-100 translate-y-0 transition-all duration-500">
+        <span className="text-white font-medium text-xl block text-center">
+          {name}
+        </span>
       </div>
     </div>
   );
