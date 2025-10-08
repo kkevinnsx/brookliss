@@ -1,28 +1,29 @@
-"use client"
+"use client";
 
-import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
-import { FaPlay } from 'react-icons/fa';
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { FaPlay, FaTimes } from "react-icons/fa";
 
 const TiltCard = ({ src, alt, name }) => {
   const itemRef = useRef(null);
   const videoRef = useRef(null);
   const modalVideoRef = useRef(null);
 
-  const [transformStyle, setTransformStyle] = useState('');
+  const [transformStyle, setTransformStyle] = useState("");
   const [isHovered, setIsHovered] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
 
-  const isVideo = src.endsWith('.mp4');
+  const isVideo = src.endsWith(".mp4");
 
   const handleMouseMove = (e) => {
     if (!itemRef.current) return;
-    const { left, top, width, height } = itemRef.current.getBoundingClientRect();
+    const { left, top, width, height } =
+      itemRef.current.getBoundingClientRect();
     const relativeX = (e.clientX - left) / width;
     const relativeY = (e.clientY - top) / height;
-    const tiltX = (relativeY - 0.5) * 10; 
+    const tiltX = (relativeY - 0.5) * 10;
     const tiltY = (0.5 - relativeX) * 10;
     const newTransform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.05, 1.05, 1.05)`;
 
@@ -31,8 +32,10 @@ const TiltCard = ({ src, alt, name }) => {
   };
 
   const handleMouseLeave = () => {
-    setTransformStyle('transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)');
-    setTimeout(() => setTransformStyle(''), 300);
+    setTransformStyle(
+      "transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)"
+    );
+    setTimeout(() => setTransformStyle(""), 300);
     setIsHovered(false);
   };
 
@@ -54,6 +57,10 @@ const TiltCard = ({ src, alt, name }) => {
 
   const handleCloseModal = () => {
     setShowModal(false);
+    if (modalVideoRef.current) {
+      modalVideoRef.current.pause();
+      modalVideoRef.current.currentTime = 0;
+    }
   };
 
   useEffect(() => {
@@ -64,9 +71,9 @@ const TiltCard = ({ src, alt, name }) => {
       setIsVideoPlaying(false);
     };
 
-    video.addEventListener('ended', handleEnded);
+    video.addEventListener("ended", handleEnded);
     return () => {
-      video.removeEventListener('ended', handleEnded);
+      video.removeEventListener("ended", handleEnded);
     };
   }, []);
 
@@ -79,7 +86,8 @@ const TiltCard = ({ src, alt, name }) => {
 
   return (
     <>
-      <div 
+      <div
+        id="resultados"
         ref={itemRef}
         className="w-74 h-120 relative rounded-2xl overflow-hidden transition-transform duration-300 ease-out group cursor-pointer"
         style={{ transform: transformStyle }}
@@ -107,16 +115,13 @@ const TiltCard = ({ src, alt, name }) => {
             )}
           </div>
         ) : (
-          <Image 
-            src={src} 
-            alt={alt}
-            fill
-            className="object-cover"
-          />
+          <Image src={src} alt={alt} fill className="object-cover" />
         )}
 
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4
-          opacity-100 translate-y-0 transition-all duration-500">
+        <div
+          className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4
+          opacity-100 translate-y-0 transition-all duration-500"
+        >
           <span className="text-white font-medium text-xl block text-center">
             {name}
           </span>
@@ -124,14 +129,23 @@ const TiltCard = ({ src, alt, name }) => {
       </div>
 
       {showModal && (
-        <div 
+        <div
           onClick={handleCloseModal}
           className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center"
         >
           <div
-            className="max-w-4xl w-full"
+            className="relative max-w-4xl w-full mx-4"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Botão X de Fechar */}
+            <button
+              onClick={handleCloseModal}
+              className="absolute -top-10 right-0 text-white bg-black/60 hover:bg-black rounded-full p-2 transition"
+              aria-label="Fechar vídeo"
+            >
+              <FaTimes className="text-2xl" />
+            </button>
+
             <video
               ref={modalVideoRef}
               src={src}
@@ -158,10 +172,26 @@ export default function Video() {
       </div>
 
       <div className="flex flex-wrap justify-center gap-12 w-screen">
-        <TiltCard src="/antesDepois.mp4" alt="Antes e depois video" name="Antes e Depois" />
-        <TiltCard src="/antesDepois.mp4" alt="Antes e depois video" name="Antes e Depois" />
-        <TiltCard src="/antesDepois.mp4" alt="Antes e depois video" name="Antes e Depois" />
-        <TiltCard src="/antesDepois.mp4" alt="Antes e depois video" name="Antes e Depois" />
+        <TiltCard
+          src="/antesDepois.mp4"
+          alt="Antes e depois video"
+          name="Antes e Depois"
+        />
+        <TiltCard
+          src="/antesDepois.mp4"
+          alt="Antes e depois video"
+          name="Antes e Depois"
+        />
+        <TiltCard
+          src="/antesDepois.mp4"
+          alt="Antes e depois video"
+          name="Antes e Depois"
+        />
+        <TiltCard
+          src="/antesDepois.mp4"
+          alt="Antes e depois video"
+          name="Antes e Depois"
+        />
       </div>
     </div>
   );

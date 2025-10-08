@@ -29,7 +29,7 @@ const TiltCard = ({src, alt, name, price}) => {
     }   
 
     return ( 
-        <div className="flex flex-col items-center">
+        <div id="produtos" className="flex flex-col items-center">
             <div 
                 ref={itemRef}
                 className="w-64 h-96 relative rounded-2xl overflow-hidden transition-transform duration-300 ease-out group bg-white shadow-md"
