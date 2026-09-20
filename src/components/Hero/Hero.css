@@ -1,0 +1,263 @@
+body {
+    overflow-x: hidden;
+}
+
+/* NavBar */
+.nav-hover-btn {
+    @apply relative ms-10 text-xs uppercase text-blue-50 after:absolute after:-bottom-0.5 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-neutral-800 after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 dark:after:bg-white cursor-pointer;
+}
+
+.floating-nav {
+    @apply bg-[#2C2E55] border-none;
+}
+
+/* Hero: skeleton shown while the R3F canvas lazy-loads (next/dynamic, ssr:false) */
+.hero-scene-skeleton {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-xl);
+    background: radial-gradient(circle at 50% 45%,
+            var(--color-pearl) 0%,
+            var(--color-cloud) 60%,
+            transparent 75%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-scene-skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg,
+            transparent 30%,
+            rgba(255, 255, 255, 0.6) 50%,
+            transparent 70%);
+    animation: shimmer 1.8s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-60%);
+    }
+
+    100% {
+        transform: translateX(60%);
+    }
+}
+
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
+    --color-blue-100: var(--color-blue-100);
+    --color-navy: var(--color-navy);
+    --color-brand-blue: var(--color-brand-blue);
+    --color-cloud: var(--color-cloud);
+    --color-pearl: var(--color-pearl);
+    --color-mist: var(--color-mist);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
+}
+
+/* Global respect for reduced motion (25_ACESSIBILITY_INCLUSIVE_DESIGN.md) */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+body {
+    background:
+        radial-gradient(circle at 76% 36%, rgba(151, 215, 244, 0.22), transparent 23%),
+        radial-gradient(circle at 18% 82%, rgba(202, 233, 248, 0.22), transparent 28%),
+        var(--background);
+    color: var(--foreground);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.font-serif {
+    font-family: "Lora", Georgia, serif;
+}
+
+/* Hero: cool daylight, with a concentrated pool of light behind the product. */
+.hero-shell {
+    background:
+        radial-gradient(ellipse 48% 58% at 73% 47%, rgba(173, 225, 248, 0.34), rgba(230, 246, 253, 0.13) 43%, transparent 72%),
+        radial-gradient(ellipse 42% 54% at 32% 47%, rgba(255, 255, 255, 0.96), transparent 78%),
+        linear-gradient(135deg, #ffffff 0%, #f9fcff 54%, #eef8fd 100%);
+}
+
+.hero-shell-move {
+    --mx: 62%;
+    --my: 38%;
+    background:
+        radial-gradient(480px circle at var(--mx) var(--my), rgba(173, 225, 248, 0.34), rgba(230, 246, 253, 0.13) 43%, transparent 72%),
+        radial-gradient(900px circle at 20% 85%, rgba(255, 255, 255, 0.96), transparent 78%),
+        linear-gradient(135deg, #ffffff 0%, #f9fcff 54%, #eef8fd 100%);
+}
+
+.hero-scene-glow {
+    position: absolute;
+    inset: 8%;
+    border-radius: 50%;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 48% 42%, rgba(255, 255, 255, 0.98) 0%, rgba(236, 249, 255, 0.88) 34%, rgba(184, 226, 244, 0.34) 63%, rgba(129, 202, 234, 0.1) 76%, transparent 78%),
+        radial-gradient(circle at 55% 62%, rgba(28, 130, 183, 0.13), transparent 62%);
+    box-shadow: 0 18px 56px rgba(44, 150, 198, 0.15), inset 0 0 50px rgba(255, 255, 255, 0.9);
+}
+
+.hero-primary-cta,
+.nav-cta {
+    background: linear-gradient(135deg, #0b6aa9 0%, #034c87 100%);
+    box-shadow: 0 12px 28px rgba(2, 76, 135, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    transition: transform var(--duration-normal) var(--ease-brand), box-shadow var(--duration-normal) var(--ease-brand), filter var(--duration-normal) var(--ease-brand);
+}
+
+.hero-primary-cta:hover,
+.nav-cta:hover {
+    transform: translateY(-2px);
+    filter: saturate(1.06) brightness(1.04);
+    box-shadow: 0 16px 32px rgba(2, 76, 135, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.nav-shell-top {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0));
+}
+
+.nav-shell-scrolled {
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(18px) saturate(150%);
+    border-bottom: 1px solid rgba(65, 150, 201, 0.16);
+    box-shadow: 0 10px 30px rgba(16, 79, 128, 0.06);
+}
+
+.nav-link {
+    position: relative;
+    transition: color var(--duration-normal) var(--ease-brand);
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -7px;
+    height: 1px;
+    background: #0b6aa9;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--duration-normal) var(--ease-brand);
+}
+
+.nav-link:hover {
+    color: #0b6aa9;
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.hero-loader-orbit {
+    width: 76px;
+    height: 76px;
+    position: relative;
+    border-radius: 50%;
+    border: 1px solid rgba(11, 106, 169, 0.22);
+    box-shadow: 0 0 36px rgba(96, 197, 239, 0.2), inset 0 0 22px rgba(130, 211, 245, 0.12);
+    animation: loader-breathe 2.4s ease-in-out infinite;
+}
+
+.hero-loader-orbit span {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #d9f5ff, #0b79bb);
+    box-shadow: 0 0 14px rgba(51, 175, 231, 0.72);
+    animation: loader-orbit 1.8s linear infinite;
+}
+
+.hero-loader-orbit span:nth-child(1) {
+    top: -5px;
+    left: calc(50% - 4px);
+}
+
+.hero-loader-orbit span:nth-child(2) {
+    right: 3px;
+    bottom: 8px;
+    animation-delay: -0.6s;
+}
+
+.hero-loader-orbit span:nth-child(3) {
+    left: 3px;
+    bottom: 8px;
+    animation-delay: -1.2s;
+}
+
+.mouse-cue {
+    color: #0b6aa9;
+    text-shadow: 0 1px 8px rgba(80, 183, 229, 0.2);
+}
+
+.mouse-cue-icon {
+    width: 19px;
+    height: 19px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    position: relative;
+}
+
+.mouse-cue-icon::before,
+.mouse-cue-icon::after {
+    content: "";
+    position: absolute;
+    background: currentColor;
+}
+
+.mouse-cue-icon::before {
+    width: 1px;
+    height: 9px;
+    top: 4px;
+    left: 8px;
+}
+
+.mouse-cue-icon::after {
+    width: 9px;
+    height: 1px;
+    top: 8px;
+    left: 4px;
+}
+
+@keyframes loader-orbit {
+    to {
+        transform: rotate(360deg) translateX(3px);
+    }
+}
+
+@keyframes loader-breathe {
+
+    0%,
+    100% {
+        transform: scale(0.96);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.04);
+        opacity: 1;
+    }
+}
