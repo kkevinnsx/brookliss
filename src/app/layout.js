@@ -1,9 +1,15 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Brookliss Profissional",
+  title: "brookliss",
   description:
-    "Ciência que transforma. Beleza que permanece. Cuidado capilar profissional, vegano e livre de crueldade.",
+    "Cosméticos profissionais desenvolvidos com ciência, tecnologia e performance para cuidados capilares.",
+
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({ children }) {
